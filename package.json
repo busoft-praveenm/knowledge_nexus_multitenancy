@@ -1,0 +1,28 @@
+{
+  "name": "knowledge-nexus-multitenancy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multi-Tenancy in the Age of AI Agents — RLS demo (React + NestJS + SQL Server + Ollama)",
+  "workspaces": [
+    "backend",
+    "frontend",
+    "deck"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "db:setup": "bash scripts/db-setup.sh",
+    "db:reset": "bash scripts/db-setup.sh --reset",
+    "dev": "concurrently -n api,web -c blue,magenta \"npm run start:dev -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w backend && npm run build -w frontend",
+    "test": "npm run test:e2e -w backend",
+    "screenshots": "node scripts/screenshots.mjs",
+    "deck": "npm run build -w deck",
+    "llm": "bash scripts/start-llm.sh"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "playwright-core": "^1.64.1"
+  }
+}
